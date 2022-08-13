@@ -1,0 +1,44 @@
+.header { 
+    text-align: center;
+    font-size: 3em;
+    margin-top: 0.67em;
+    margin-bottom: 0.67em;
+    margin-left: 0;
+    margin-right: 0;
+    display: block;
+    color: red;
+   }
+
+   .links{
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 150%;
+    margin-bottom: 20px;
+   }
+
+   .link:link,
+    .link:visited {
+    /* padding 1stnum:top bott, 2ndnum: L an R
+        
+    */
+      padding: 5px 10px;
+      /* 100 light -> 700 bold */
+      font-weight: 100;
+      margin: 1rem;
+      color: rgb(21, 44, 248);
+      text-decoration: none;
+      text-transform: uppercase;
+      border-bottom: 2px solid transparent;
+      transition: all 0.3s;
+      -webkit-transition: all 0.3s;
+      -moz-transition: all 0.3s;
+      -ms-transition: all 0.3s;
+      -o-transition: all 0.3s;
+    }
+
+    /* to select my element(Navlink) with 2 classes on it(link and active) use. 
+    .1stclass.2ndclass  chain them */
+    .link.active {
+        font-weight: 500;
+        color:red
+    }
