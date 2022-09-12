@@ -13,8 +13,8 @@ export const TrainersList = ({trainers, deleteTrainer,updateTrainer}) => {
       {trainers.map(trainer => (
         // <Trainer {...trainer}/> 
         //Don't pass in a spread operator to component instead rename as prop so you can pass it in.
-        <Trainer trainer={trainer} //no longer use trainerArg to reference.
-        //instead use trainerProp one bucket dumping its contents into another.
+        <Trainer 
+        trainer={trainer} 
         deleteTrainer={deleteTrainer}
         updateTrainer={updateTrainer}
         key={trainer.id}

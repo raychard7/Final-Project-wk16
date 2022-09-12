@@ -1,41 +1,60 @@
 import {Card, Button, Form} from 'react-bootstrap';
 import { NewPokemonForm } from './newPokemonForm';
 import { updateTrainer } from './rest/TrainersApi';
-
+import './css/cssTrainer.css'
 //destructure prop w/ ({trainerProp, 2ndProp, 3rdprop}) can remove props.
 function Trainer({trainer, updateTrainer, deleteTrainer}) {
 
-  const addPokemon = (pokemon) => updateTrainer({...trainer, pokemonteam:[...trainer.pokemonteam , pokemon]})
+  
 
+  //pokemon id orrrr just name?
+  const deletePokemon = (pokemonid) => {
+    //with a d updated no update.
+    const updatedTrainer = {
+      ...trainer,
+      pokemonteam: trainer.pokemonteam.filter((x) => x.id !== pokemonid)//define pokemon id 
+    } ;
+    updateTrainer(updatedTrainer);
+  }
 
-  // const pokemons =() =>(
+  const addPokemon = (pokemon) => updateTrainer({...trainer, pokemonteam:[...trainer.pokemonteam , pokemon]});
 
-  //   {trainer.pokemonteam.map((pokemon, index) => (
-  //     <Card style={{ width: '12rem' }}>
-  //     <Card.Img variant="top" src="holder.js/100px180" />
-  //     <Card.Body>
-  //       <Card.Title>{pokemon}</Card.Title>
-  //       <Card.Text>
-  //         stats
-  //       </Card.Text>
-  //       <Button variant="primary">Go somewhere</Button>
-  //     </Card.Body>
-  //   </Card>
-  //   ))}
-  // )
+  
 
+  const pokemonsFunction = () => (
+    <ul>
+      {trainer.pokemonteam.map((pokemon, index) => (
+        <li key={index}>
+          <label> {`${pokemon}`}</label>
+          <button conClick={(e) => deletePokemon(pokemon.id)}>Delete</button>
+        </li>
+      ))}
+    </ul>
+  )
+    
   return (
-    <Card style={{ width: '20rem' }}>
+    <Card className='m-3' >
       
       <Card.Body>
         <Card.Title>Trainer: {trainer.trainername} </Card.Title>
         <Button variant="danger" onClick={()=>deleteTrainer(trainer.id)}>Delete Trainer</Button>
-        {/* does this map through pokemonteam? */}
-        {trainer.pokemonteam.map((pokemon,index) => {
-          <Card.Text>{pokemon}</Card.Text>
-        })}
+        {/* Maps through pokemon team and creates index */}
+        
         <NewPokemonForm addPokemon={addPokemon}/>
-        cards
+        <div className='d-flex'>
+          {trainer.pokemonteam.map((pokemon,index) => {
+           return <div>
+                    <div className='border p-3 bg-light m-3 flex-fill'>{pokemon}
+                    <Button variant="warning" size="sm" className='button1'>Send to Prof Oak</Button>
+                    </div>
+                    
+                  </div>
+                  
+            }
+          )}
+        </div>
+        
+        
       </Card.Body>
     </Card>
   );

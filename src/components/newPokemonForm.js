@@ -3,13 +3,10 @@ import {Form, Button} from 'react-bootstrap'
 export const NewPokemonForm = ({addPokemon}) => {
   const [pokemon, setPokemon]=useState('')
 
- //Submit function won't run. My alert won't appear but whole card rerenders
+ 
   const handleSubmit =(e) => {
     e.preventDefault();
-    alert("handleSubmit inside")
     if(pokemon){
-      alert("Submit func worked")
-
       addPokemon(pokemon)
       setPokemon('');
     } else {
@@ -18,8 +15,8 @@ export const NewPokemonForm = ({addPokemon}) => {
   }
 
   return (
-    <Form>
-          <Form.Group onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit}>
+          <Form.Group >
             <Form.Control type="pokemonname" 
             placeholder='Pokemon name'
             onChange={(e)=> setPokemon(e.target.value)}

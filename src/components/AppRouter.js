@@ -1,9 +1,10 @@
 import React, {useState, useEffect} from 'react'
-import {get, post, deleteMethod, updateTrainer } from './rest/TrainersApi'
+import {get, post, deleteMethod, put } from './rest/TrainersApi'
 import { BrowserRouter as Router,Route , Routes} from 'react-router-dom'
 import AddTrainerForm from './AddTrainerForm'
 // wrapped trainerslist in brackets and it worked to import. It didn't before for some reason.
 import {TrainersList} from './TrainersList'
+import About from './About'
 
 const AppRouter = () => {
 
@@ -21,7 +22,7 @@ const fetchTrainers =async () => {
 }
 
 const updateTrainer =async (updatedTrainer) => {
-  await updateTrainer(updatedTrainer);
+  await put(updatedTrainer);
   fetchTrainers();
 }
 
@@ -44,7 +45,9 @@ const deleteTrainer =async(id) =>{
               deleteTrainer={deleteTrainer}
               updateTrainer={updateTrainer}
               />}>
-      
+    </Route>
+    <Route path='/about' element={<About />}>
+
     </Route>
     </ Routes>
   )

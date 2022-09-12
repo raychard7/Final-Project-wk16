@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import { responsivePropType } from 'react-bootstrap/esm/createUtilityClasses';
 
 
 const endpoint = 'https://62eaad08ad295463259236fa.mockapi.io/pokemontrainers'
@@ -9,6 +10,7 @@ const get = async() =>{
         
         const response = await fetch(endpoint); //fetch(endpoing)= Get method no more info needed.
         const data = await response.json() //parse data response.
+        
         return data;
     } catch(e) {
         console.log('Oops, fetchAllTrainers did not work', e)
@@ -55,15 +57,20 @@ const fetchTrainerById = async (id) => {
     }}
 
 //how to set up my arguments(id and new data?). Is newdata my trainer I'm updating?
-const updateTrainer = async (id, trainer) => {
-    const response = await fetch(`${endpoint}/${id}`,{
-        method: "PUT", 
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(trainer)
-    })
-    const data = await response.json()
-    return data
+const put = async (trainer) => {
+    try{
+        const response = await fetch(`${endpoint}/${trainer.id}`,{
+            method: "PUT", 
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(trainer)
+        });
+        return await response.json()
+    } catch(e) {
+        console.log('Oops, updating house has an issue in put')
+    }
+    
+    
 
 }
 
-export {updateTrainer, deleteMethod, get, post}
+export {put, deleteMethod, get, post}

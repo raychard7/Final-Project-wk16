@@ -20,6 +20,9 @@ export const Header = () => {
           <NavLink to="/add" className="link" activeClassName="active">
             Add Trainer
           </NavLink>
+          <NavLink to="/about" className="link" activeClassName="active">
+            About
+          </NavLink>
           <AppRouter />
         </Router>
         </div>
