@@ -22,6 +22,7 @@ const fetchTrainers =async () => {
 }
 
 const updateTrainer =async (updatedTrainer) => {
+
   await put(updatedTrainer);
   fetchTrainers();
 }

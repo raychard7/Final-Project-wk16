@@ -5,8 +5,9 @@ import Theme from '../assets/Theme.mp3'
 export default function ThemeButton() {
   return (
     <ReactAudioPlayer
-    src='../assets/Theme.mp3'
-    autoPlay
+    src={Theme}
+    // autoPlay
+    onPlay
     controls
     />
   )

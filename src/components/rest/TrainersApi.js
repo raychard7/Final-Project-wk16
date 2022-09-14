@@ -58,13 +58,14 @@ const fetchTrainerById = async (id) => {
 
 //how to set up my arguments(id and new data?). Is newdata my trainer I'm updating?
 const put = async (trainer) => {
+    
     try{
         const response = await fetch(`${endpoint}/${trainer.id}`,{
             method: "PUT", 
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(trainer)
         });
-        return await response.json()
+       
     } catch(e) {
         console.log('Oops, updating house has an issue in put')
     }

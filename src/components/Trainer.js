@@ -9,11 +9,14 @@ function Trainer({trainer, updateTrainer, deleteTrainer}) {
 
   //pokemon id orrrr just name?
   const deletePokemon = (pokemonid) => {
+    console.log(pokemonid)
+
     //with a d updated no update.
     const updatedTrainer = {
       ...trainer,
-      pokemonteam: trainer.pokemonteam.filter((x) => x.id !== pokemonid)//define pokemon id 
+      pokemonteam: trainer.pokemonteam.filter((x) => x !== pokemonid)//define pokemon id 
     } ;
+   
     updateTrainer(updatedTrainer);
   }
 
@@ -26,7 +29,7 @@ function Trainer({trainer, updateTrainer, deleteTrainer}) {
       {trainer.pokemonteam.map((pokemon, index) => (
         <li key={index}>
           <label> {`${pokemon}`}</label>
-          <button conClick={(e) => deletePokemon(pokemon.id)}>Delete</button>
+          <button onClick={(e) => deletePokemon(pokemon.id)}>Delete</button>
         </li>
       ))}
     </ul>
@@ -45,7 +48,7 @@ function Trainer({trainer, updateTrainer, deleteTrainer}) {
           {trainer.pokemonteam.map((pokemon,index) => {
            return <div>
                     <div className='border p-3 bg-light m-3 flex-fill'>{pokemon}
-                    <Button variant="warning" size="sm" className='button1'>Send to Prof Oak</Button>
+                    <Button onClick={()=> deletePokemon(pokemon)} variant="warning" size="sm" className='button1'>Send to Prof Oak</Button>
                     </div>
                     
                   </div>
